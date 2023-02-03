@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
-import { addAction } from 'redux/users/usersAction';
+// import { addAction } from 'redux/users/usersAction';
+import { addUsers } from 'redux/users/usersSlice';
 
 export const AddUserPage = () => {
   const [name, setName] = useState('');
@@ -21,8 +22,9 @@ const user = {
   name,
   age,
   id: nanoid(),
+  status:'offline',
 };
-dispatch(addAction(user));
+dispatch(addUsers(user));
 }
    
   return (

@@ -1,8 +1,13 @@
 import { useSelector } from 'react-redux';
 import { getUsers } from 'redux/users/usersSelector';
-import { Li ,P,Span} from './HomePage.styled';
+import { Li ,P,Span, Button} from './HomePage.styled';
+import { useDispatch } from 'react-redux';
+// import { addDelete } from 'redux/users/usersAction';
+import { deleteUsers, toggleStatusUser } from 'redux/users/usersSlice';
+
 export const HomePage = () => {
   const users = useSelector(getUsers);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -15,6 +20,15 @@ export const HomePage = () => {
             <P>
               Age: <Span> {user.age}</Span>
             </P>
+            <P>
+              Status: <Span> {user.status}</Span>{' '}
+            </P>
+            <Button onClick={() => dispatch(deleteUsers(user.id))}>
+              Delete
+            </Button>
+            <Button onClick={() => dispatch(toggleStatusUser(user.id))}>
+              Change status
+            </Button>
           </Li>
         ))}
       </ul>
